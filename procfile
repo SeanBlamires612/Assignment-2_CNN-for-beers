@@ -1,0 +1,1 @@
+web: sh setup.sh && streamlit run Blamires_Sean_1434019_Asst2.py
