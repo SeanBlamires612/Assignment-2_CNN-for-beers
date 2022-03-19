@@ -9,15 +9,6 @@ Predicting quality of *Beers*
 import numpy as np
 import pandas as pd
 
-path = "C:\\Users\\z3066824\\OneDrive - UNSW\Documents\\"
-
-file = "beer_reviews.csv"
-
-df = pd.read_csv(path+file)
-
-df
-
-df.info()
 
 <class 'pandas.core.frame.DataFrame'>
 RangeIndex: 1586614 entries, 0 to 1586613
