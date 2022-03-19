@@ -242,8 +242,6 @@ def zero_rule_algorithm_regression(train, test):
 
 # train a custom neural networks model
 
-pip install torchvision
-
 
 import torch
 import torchvision
@@ -483,101 +481,6 @@ def train_classification(model, criterion, optimizer, batch_size, device, schedu
     if scheduler:
         scheduler.step()
 
-for epoch in range(epochs):
-    train_loss, train_acc = train_classification(model, criterion, optimizer, batch_size=batch_size, device=device, scheduler=scheduler, generate_batch=generate_batch)
-    valid_loss, valid_acc = test_classification(valid_data, model, criterion, batch_size=batch_size, device=device, generate_batch=generate_batch)
-
-    print(f'Epoch: {epoch}')
-    print(f'\t(train)\t|\tLoss: {train_loss:.4f}\t|\tAcc: {train_acc * 100:.1f}%')
-    print(f'\t(valid)\t|\tLoss: {valid_loss:.4f}\t|\tAcc: {valid_acc * 100:.1f}%')
-
-
-# Check Loss functions using keras
-
-pip install keras
-
-
-pip install tensorflow
-
-
-import keras
-from keras.datasets import mnist
-from keras.models import Sequential
-from keras.layers import Flatten, Dense, Activation
-
-
-
-
-from tensorflow.keras.utils import to_categorical
-
-
-
-from matplotlib import pyplot as plt
-
-
-class PlotLosses(keras.callbacks.Callback):
-    def on_train_begin(self, logs={}):
-        self.i = 0
-        self.x = []
-        self.losses = []
-        self.val_losses = []
-        
-        self.fig = plt.figure()
-        
-        self.logs = []
-
-    def on_epoch_end(self, epoch, logs={}):
-        
-        self.logs.append(logs)
-        self.x.append(self.i)
-        self.losses.append(logs.get('loss'))
-        self.val_losses.append(logs.get('val_loss'))
-        self.i += 1
-        
-        clear_output(wait=True)
-        plt.plot(self.x, self.losses, label="loss")
-        plt.plot(self.x, self.val_losses, label="val_loss")
-        plt.legend()
-        plt.show();
-        
-plot_losses = PlotLosses()
-
-
-X_train = np.asarray(data).astype('float32')
-X_test = np.asarray(test[:1214782]).astype('float32')
-y = np.asarray(y[:1214782]).astype('float32')
-
-
-
-model = Sequential()
-
-model.add(Flatten(input_shape=(28, 28, 1)))
-model.add(Dense(10))
-model.add(Activation('softmax'))
-
-model.compile(optimizer='rmsprop',
-              loss='categorical_crossentropy',
-              metrics=['accuracy'])
-
-
-
-
-plt.show(model)
-
-
-model.fit(data, y,
-          epochs=100,
-          callbacks=[plot_losses])
-
-
-# Plot average loss
-
-
-loss_plot = pd.DataFrame(model.average_loss)
-loss_plot.plot()
-
-
-# Push model to github
 
 
 git init
