@@ -483,14 +483,6 @@ def train_classification(model, criterion, optimizer, batch_size, device, schedu
 
 
 
-git init
-git add .
-commit -m "pytorch Assignment2"
-git checkout master
-git pull
-git checkout pytorch_Assignment2
-
-commit -m "Assignment2"
 
 
 
